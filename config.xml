@@ -1,14 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.connecthings.appcordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>CordovaAppDemo</name>
-    <description>
-        A sample Apache Cordova application that responds to the deviceready event.
-    </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
-    </author>
+    <description>A sample Apache Cordova application that use the Connecthings' SDK</description>
+    <author email="dev@cordova.apache.org" href="http://connecthings.com">Connecthings</author>
     <content src="index.html" />
-    <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -18,9 +13,15 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <resource-file src="www/assets/params.xml" target="app/src/main/res/values/params.xml" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
+        <resource-file src="www/assets/connecthings-bridge-settings.plist" target="connecthings-bridge-settings.plist" />
     </platform>
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-bridge-connecthings" spec="https://github.com/Connecthings/cordova-bridge-connecthings.git" />
+    <engine name="ios" spec="^4.5.4" />
+    <engine name="android" spec="^7.1.0" />
 </widget>

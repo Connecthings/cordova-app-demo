@@ -17,20 +17,43 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        document.addEventListener('pause', this.onPause.bind(this), false);
+        document.addEventListener('resume', this.onResume.bind(this), false);
     },
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
     onDeviceReady: function() {
+        var detectionButton = document.getElementById("detection");
+        var alertDiv = document.getElementById("alert");
+
+        detectionButton.addEventListener('click', function(){
+            ConnecthingsBridge.registerAlert();
+
+            ConnecthingsBridge.alert.createInAppAction = function(pluginResult) {
+                console.log("client createInAppAction");
+                var placeInAppAction = JSON.parse(pluginResult["placeInAppAction"]);
+                console.log(placeInAppAction);
+                alertDiv.innerHTML = "";
+                alertDiv.appendChild(displayContent(placeInAppAction));
+            };
+
+            ConnecthingsBridge.alert.removeInAppAction = function(pluginResult) {
+                console.log("client removeInAppAction");
+                alertDiv.innerHTML = "";
+            };
+        }, false);
         this.receivedEvent('deviceready');
     },
 
-    // Update DOM on a Received Event
+    onPause: function() {
+        console.log("onPause");
+    },
+
+    onResume: function () {
+        console.log("onResume");
+    },
+
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
@@ -41,6 +64,38 @@ var app = {
 
         console.log('Received Event: ' + id);
     }
+};
+
+function displayContent(placeInAppAction) {
+    var divPlace = document.createElement("div");
+    divPlace.setAttribute("class", "clearfix");
+
+    var name = placeInAppAction.poiName;
+    var divPoiTitle = document.createElement("div");
+    divPoiTitle.setAttribute("class", "left w33");
+    divPoiTitle.innerHTML = placeInAppAction.title.capitalize();
+
+    var divPoiDescription = document.createElement("div");
+    divPoiDescription.setAttribute("class", "left w33");
+    divPoiDescription.innerHTML = placeInAppAction.description.capitalize();
+
+    var divRange = document.createElement("div");
+    divRange.setAttribute("class", "left w33");
+    divRange.innerHTML = placeInAppAction.placeProximity.capitalize();
+
+    divPlace.appendChild(divPoiTitle);
+    divPlace.appendChild(divPoiDescription);
+    divPlace.appendChild(divRange);
+
+    return divPlace;
+}
+
+function round(value, decimals) {
+    return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
+}
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
 app.initialize();

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>ct_url_type</key>
+		<string>LOCAL / DEMO / ITG / PRE_PROD / PROD / PROD_US</string>
+		<key>ct_login</key>
+		<string>yourLogin</string>
+		<key>ct_password</key>
+		<string>yourPassword</string>
+		<key>ct_company</key>
+		<string>yourCompany</string>
+	</dict>
+</plist>

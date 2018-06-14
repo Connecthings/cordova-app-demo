@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ct_url_type">PRE_PROD</string>
+    <string name="ct_login">Lvi_cbeacon</string>
+    <string name="ct_password">RGVZChwWe3LNqwBTY7qa</string>
+    <string name="ct_company">ccbeacondemo</string>
+</resources>

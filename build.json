@@ -1,0 +1,18 @@
+{
+	"ios": {
+		"debug": {
+			"buildFlag": [  
+		    	"SWIFT_VERSION = 4.1",
+		        "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES"
+		    ],
+			"developmentTeam": "yourTeamId"
+		},
+		"release": {
+			"buildFlag": [  
+		    	"SWIFT_VERSION = 4.1",
+		        "EMBEDDED_CONTENT_CONTAINS_SWIFT = YES"
+		    ],
+			"developmentTeam": "yourTeamId"
+		}
+	}
+}
