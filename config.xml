@@ -13,16 +13,18 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <resource-file src="www/assets/params.xml" target="app/src/main/res/values/params.xml" />
-        <preference name="android-targetSdkVersion" value="25" />
+        <hook src="hooks/android-build-fixes.js" type="before_build" />
+        <hook src="hooks/android-build-fixes.js" type="before_run" />
+        <resource-file src="www/assets/connecthings-settings.xml" target="app/src/main/res/values/connecthings-settings.xml" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <resource-file src="www/assets/connecthings-bridge-settings.plist" target="connecthings-bridge-settings.plist" />
+        <hook src="hooks/bridge-settings-removal.js" type="before_plugin_add" />
+        <resource-file src="www/assets/connecthings-settings.plist" target="connectplace-settings.plist" />
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="1" />
-    <plugin name="cordova-bridge-connecthings" spec="https://github.com/Connecthings/cordova-bridge-connecthings.git" />
-    <engine name="ios" spec="^4.5.4" />
-    <engine name="android" spec="^7.1.0" />
+    <plugin name="cordova-bridge-connecthings" spec="/Users/ludo/Desktop/cordova-bridge-connecthings" />
+    <engine name="ios" spec="^4.5.5" />
+    <engine name="android" spec="^7.1.1" />
 </widget>
