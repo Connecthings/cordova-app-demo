@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
- 	<string name="ct_url_type">LOCAL / DEMO / ITG / PRE_PROD / PROD</string>
+    <string name="ct_url_type">LOCAL / DEMO / ITG / PRE_PROD / PROD</string>
     <string name="ct_login">yourLogin</string>
     <string name="ct_password">yourPassword</string>
     <string name="ct_company">yourCompany</string>

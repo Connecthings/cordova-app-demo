@@ -24,31 +24,46 @@ initialize: function() {
 },
     
 onDeviceReady: function() {
-    var detectionButton = document.getElementById("detection");
-    var alertDiv = document.getElementById("inappaction");
+    var locationPermissionButton = document.getElementById("location-permission");
+    var registerInAppButton = document.getElementById("register-inapp");
+    var unregisterInAppButton = document.getElementById("unregister-inapp");
+    var inAppDiv = document.getElementById("result-inapp");
     var optinButton = document.getElementById("optin");
     var optinResult = document.getElementById("optin-result");
     
-    ConnecthingsBridge.askPermissions("ACCESS_FINE_LOCATION");
+    locationPermissionButton.addEventListener('click', function(){
+        ConnecthingsBridge.askPermissions("ACCESS_FINE_LOCATION");
+    }, false);
     
-    detectionButton.addEventListener('click', function(){
+    registerInAppButton.addEventListener('click', function(){
         ConnecthingsBridge.registerInAppAction();
                                      
         ConnecthingsBridge.inAppAction.createInAppAction = function(pluginResult) {
             console.log("client createInAppAction");
             var placeInAppAction = pluginResult["placeInAppAction"];
-            alertDiv.innerHTML = "";
-            alertDiv.appendChild(displayContent(placeInAppAction));
+            inAppDiv.innerHTML = "";
+            inAppDiv.appendChild(displayContent(placeInAppAction));
         };
          
         ConnecthingsBridge.inAppAction.removeInAppAction = function(pluginResult) {
             console.log("client removeInAppAction");
-            alertDiv.innerHTML = "";
+            inAppDiv.innerHTML = "";
         };
     }, false);
-    
+
+    unregisterInAppButton.addEventListener('click', function(){
+        inAppDiv.innerHTML = "";
+        ConnecthingsBridge.unregisterInAppAction();
+    }, false);
+
     optinButton.addEventListener('click', function(){
-        if (confirm("Can I use your localisation ?")) {
+        ConnecthingsBridge.hasOptinsBeenAsked(function(pluginResult) {
+            console.log("hasOptinsBeenAsked: " + pluginResult["hasOptinsBeenAsked"]);
+        });
+
+        var privacyNote = "This app collects your location data\nto enable us to showcase the\ncapability of our HEROW\nAugmented Location technology.\n\n";
+        privacyNote += "The data collected will not be used\nfor commercial purposes and will\nnot be shared with any third party.";
+        if (confirm(privacyNote)) {
             ConnecthingsBridge.updateOptin("USER_DATA", true);
             ConnecthingsBridge.updateOptin("STATUS", true);
         } else {
@@ -58,7 +73,7 @@ onDeviceReady: function() {
         ConnecthingsBridge.allOptinsAreUpdated();
         ConnecthingsBridge.isOptinAuthorized("USER_DATA", function(pluginResult) {
             optinResult.innerHTML = "";
-            optinResult.innerHTML = "USER_DATA: " + pluginResult["isOptinAuthorized"];
+            optinResult.innerHTML = "<div class='mbs'>USER_DATA: " + pluginResult["isOptinAuthorized"] + "</div>";
         });
     }, false);
 
