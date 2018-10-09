@@ -39,6 +39,12 @@ update an environment variable called **CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL*
 
 ```
 export CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL="https\\://services.gradle.org/distributions/gradle-4.6-all.zip"
-``
+```
+
+And, if you want the modification to be permanent, you can update your .bashrc like this :
+
+```
+CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL="https\\://services.gradle.org/distributions/gradle-4.6-all.zip"
+```
 
 That's all folks.
