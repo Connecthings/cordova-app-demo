@@ -24,7 +24,9 @@
         <resource-file src="www/assets/connecthings-settings.plist" target="connectplace-settings.plist" />
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="1" />
-    <plugin name="cordova-bridge-connecthings" spec="/Users/ludo/Desktop/cordova-bridge-connecthings" />
+    <plugin name="cordova-plugin-add-swift-support" spec="1.7.2" />
+    <plugin name="cordova-plugin-cocoapod-support" spec="1.6.0" />
+    <plugin name="cordova-bridge-connecthings" spec="https://github.com/Connecthings/cordova-bridge-connecthings.git" />
     <engine name="android" spec="^7.1.1" />
     <engine name="ios" spec="^4.5.5" />
 </widget>

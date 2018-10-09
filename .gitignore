@@ -6,3 +6,4 @@ node_modules/
 platforms/
 *.xcuserdatad
 resources/signing
+package-lock.json
