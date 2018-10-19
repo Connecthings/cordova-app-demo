@@ -1,5 +1,5 @@
 module.exports = function(context) {
-    var settingsFilePath = "connecthings-settings.plist";
+    var settingsFilePath = "connectplace-settings.plist";
     var fs = context.requireCordovaModule('fs'),
         path = context.requireCordovaModule('path'),
         deferral = context.requireCordovaModule('q').defer();

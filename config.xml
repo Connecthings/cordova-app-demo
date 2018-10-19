@@ -15,18 +15,14 @@
         <allow-intent href="market:*" />
         <hook src="hooks/android-build-fixes.js" type="before_build" />
         <hook src="hooks/android-build-fixes.js" type="before_run" />
-        <resource-file src="www/assets/connecthings-settings.xml" target="app/src/main/res/values/connecthings-settings.xml" />
+        <resource-file src="www/assets/connectplace-settings.xml" target="app/src/main/res/values/connectplace-settings.xml" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
         <hook src="hooks/bridge-settings-removal.js" type="before_plugin_add" />
-        <resource-file src="www/assets/connecthings-settings.plist" target="connectplace-settings.plist" />
+        <resource-file src="www/assets/connectplace-settings.plist" target="connectplace-settings.plist" />
     </platform>
-    <plugin name="cordova-plugin-whitelist" spec="1" />
-    <plugin name="cordova-plugin-add-swift-support" spec="1.7.2" />
-    <plugin name="cordova-plugin-cocoapod-support" spec="1.6.0" />
-    <plugin name="cordova-bridge-connecthings" spec="https://github.com/Connecthings/cordova-bridge-connecthings.git" />
     <engine name="android" spec="^7.1.1" />
     <engine name="ios" spec="^4.5.5" />
 </widget>
