@@ -13,6 +13,8 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <hook src="hooks/android-build-fixes.js" type="before_build" />
+        <hook src="hooks/android-build-fixes.js" type="before_run" />
         <resource-file src="www/assets/connectplace-settings.xml" target="app/src/main/res/values/connectplace-settings.xml" />
     </platform>
     <platform name="ios">
