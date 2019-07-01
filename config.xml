@@ -22,9 +22,7 @@
         <hook src="hooks/bridge-settings-removal.js" type="before_plugin_add" />
         <resource-file src="www/assets/connectplace-settings.plist" target="connectplace-settings.plist" />
     </platform>
-    <plugin name="cordova-plugin-add-swift-support" spec="2.0.2" />
-    <plugin name="cordova-plugin-cocoapod-support" spec="1.6.2" />
+    <plugin name="cordova-plugin-add-swift-support" spec="^2.0.2" />
+    <plugin name="cordova-plugin-cocoapod-support" spec="^1.6.2" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <engine name="android" spec="^8.0.0" />
-    <engine name="ios" spec="^5.0.1" />
 </widget>
