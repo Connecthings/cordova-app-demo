@@ -117,10 +117,10 @@ h1 {
 #detection {
   margin-top: 15px;
 }
+
 .button {
   border: 2px solid #25ABE8;
   color: #25ABE8;
-  width: 125px;
   display: block;
   margin: 0 auto;
   font-size: 16px;
@@ -133,7 +133,6 @@ h1 {
 .button:hover {
   background: #25ABE8;
   color: white;
-  width: 85%;
 }
 #alert {
     font: normal 16px Verdana, Arial, sans-serif;
@@ -141,4 +140,15 @@ h1 {
 }
 .left {
     float: left;
+}
+input[type="text"] {
+    padding: 8px;
+    width: 100%;
+    border: none;
+    border: solid 1px #888;
+    border-radius: 0px;
+}
+
+input[type="text"]::placeholder {
+    color: #D7D7D7;
 }
