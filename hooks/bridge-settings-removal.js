@@ -3,7 +3,7 @@ const path = require('path');
 const deferral = require('q').defer();
 
 module.exports = function(context) {
-    var settingsFilePath = "connectplace-settings.plist";
+    var settingsFilePath = "connecthings-settings.plist";
 
     var platformPath = path.join(context.opts.projectRoot, 'platforms/ios') + "/CordovaAppDemo/Resources/";
     var filePath = platformPath + settingsFilePath;
