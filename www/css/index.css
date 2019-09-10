@@ -148,7 +148,6 @@ input[type="text"] {
     border: solid 1px #888;
     border-radius: 0px;
 }
-
 input[type="text"]::placeholder {
     color: #D7D7D7;
 }
