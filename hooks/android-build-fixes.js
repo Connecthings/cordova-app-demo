@@ -9,16 +9,24 @@ module.exports = function(context) {
     var platformPath = path.join(context.opts.projectRoot, 'platforms/android');
 
     // First, we remove minSDK in Manifest.xml 
-    writeNewManifest(platformPath + "/CordovaLib/AndroidManifest.xml");
-    writeNewManifest(platformPath + "/app/src/main/AndroidManifest.xml");
+    // writeNewManifest(platformPath + "/CordovaLib/AndroidManifest.xml");
+    // writeNewManifest(platformPath + "/app/src/main/AndroidManifest.xml");
 
-    // Then, we update the build.gradle version to 3.3.0
-    updateBuildVersion(platformPath + "/build.gradle");
-    updateBuildVersion(platformPath + "/app/build.gradle");
-    updateBuildVersion(platformPath + "/CordovaLib/build.gradle");
+    // Then, we update the build.gradle to last version
+    updateGradleVersion(platformPath + "/build.gradle");
+    updateGradleVersion(platformPath + "/app/build.gradle");
+    updateGradleVersion(platformPath + "/CordovaLib/build.gradle");
 
-    // Finally, we change the wrapper version to at least the gradle-4.10.3-all.zip
-    // changeWrapperVersion(platformPath + "/gradle/wrapper/gradle-wrapper.properties");
+	// Update version
+	updateBuildToolsVersion(platformPath + "/build.gradle");
+	updateAttribute(platformPath + "/build.gradle", "defaultMinSdkVersion", 19);
+	updateAttribute(platformPath + "/build.gradle", "defaultTargetSdkVersion", 29);
+	updateAttribute(platformPath + "/build.gradle", "defaultCompileSdkVersion", 29);
+
+    // Finally, we change the wrapper version to the last version 
+    changeWrapperVersion(platformPath + "/gradle/wrapper/gradle-wrapper.properties");
+	// var appPath = context.opts.projectRoot;
+    // changeWrapperVersion(appPath + "/gradle/wrapper/gradle-wrapper.properties");
 
     deferral.resolve();
     return deferral.promise;
@@ -35,21 +43,44 @@ function writeNewManifest(manifestPath) {
 }
 
 
-function updateBuildVersion(gradlePath) {
+function updateGradleVersion(gradlePath) {
     if (fs.existsSync(gradlePath)) {
         var gradleRegex = /com\.android\.tools\.build:gradle:[0-9]+.[0-9]+.[0-9]+/;
+		var gradleCompileVersion = "3.5.1";
         var data = fs.readFileSync(gradlePath, 'utf8');
-        var newData = data.replace(gradleRegex, "com\.android\.tools\.build:gradle:3.3.0");
+        var newData = data.replace(gradleRegex, "com\.android\.tools\.build:gradle:" + gradleCompileVersion);
         fs.writeFileSync(gradlePath, newData, 'utf8');
     }
 }
 
 
+function updateBuildToolsVersion(gradlePath) {
+    if (fs.existsSync(gradlePath)) {
+		var buildToolsRegex = /defaultBuildToolsVersion\=\"[0-9]+\.[0-9]+\.[0-9]+\"/;
+		var newBuildToolsVersion = "29.0.2";
+        var data = fs.readFileSync(gradlePath, 'utf8');
+        var newData = data.replace(buildToolsRegex, "defaultBuildToolsVersion\=\"" + newBuildToolsVersion + "\"");
+        fs.writeFileSync(gradlePath, newData, 'utf8');
+	}
+}
+
+
+function updateAttribute(gradlePath, name, newVersion) {
+    if (fs.existsSync(gradlePath)) {
+		var attributeRegex = new RegExp(name + "\=[0-9]{1,3}");
+        var data = fs.readFileSync(gradlePath, 'utf8');
+        var newData = data.replace(attributeRegex, name + "\=" + newVersion);
+        fs.writeFileSync(gradlePath, newData, 'utf8');
+	}
+}
+
+
 function changeWrapperVersion(wrapperPath) {
     if (fs.existsSync(wrapperPath)) {
-        var wrapperRegex = /gradle-([0-9]\.?){1,3}-all\.zip/;
+		var wrapperRegex = /gradle-([0-9]{1,3}\.?){1,3}-all\.zip/;
+		var gradleWrapperLastVersion = "gradle-5.4.1-all.zip";
         var data = fs.readFileSync(wrapperPath, 'utf8');
-        var newData = data.replace(wrapperRegex, "gradle-4.10.3-all.zip");
+        var newData = data.replace(wrapperRegex, gradleWrapperLastVersion);
         fs.writeFileSync(wrapperPath, newData, 'utf8');
     }
 }

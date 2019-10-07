@@ -11,7 +11,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "cordova": "^8.1.2",
-        "cordova-android": "^8.0.0",
+        "cordova-android": "^8.1.0",
         "cordova-ios": "^5.0.1",
         "cordova-plugin-add-swift-support": "^2.0.2",
         "cordova-plugin-cocoapod-support": "^1.6.0",
@@ -24,6 +24,9 @@
             "cordova-plugin-cocoapod-support": {},
             "cordova-plugin-add-swift-support": {}
         },
-        "platforms": []
+        "platforms": [
+            "ios",
+            "android"
+        ]
     }
 }
