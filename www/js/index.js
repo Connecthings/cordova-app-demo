@@ -36,6 +36,8 @@ var app = {
         var removeCustomId = document.getElementById("remove-custom-id");
         var appGroupNameInput = document.getElementById("app-group-name");
         var setGroupName = document.getElementById("set-app-group-name");
+        var registerForGeofence = document.getElementById("register-geofence");
+
 
         locationPermissionButton.addEventListener('click', function(){
             ConnecthingsBridge.askPermissions("ACCESS_FINE_LOCATION");
@@ -85,6 +87,12 @@ var app = {
         unregisterInAppButton.addEventListener('click', function(){
             inAppDiv.innerHTML = "";
             ConnecthingsBridge.unregisterInAppAction();
+        }, false);
+		
+        registerForGeofence.addEventListener('click', function(){
+            ConnecthingsBridge.registerForGeofence(function(pluginResult) {
+                console.log(pluginResult);
+            });
         }, false);
 
         optinButton.addEventListener('click', function(){
