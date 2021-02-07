@@ -8,7 +8,7 @@ This app is an example to show you, how to use the [Cordova Bridge of the Connec
 cordova create yourFolder com.example.hello HelloWorld
 cordova platform add android 
 cordova platform add ios
-cordova plugin add https://github.com/Connecthings/cordova-bridge-connecthings.git
+cordova plugin add https://github.com/Connecthings/herow-bridge-cordova.git
 ```
 
 ## Configure your application to support the Connecthings' SDK
@@ -30,7 +30,7 @@ First, you need to edit the build.json file to add your ios team id :
 }
 ```
 
-Then, you need to seize the Connecthings' SDK identifiers before being able to use the plugin. You can read more about this, on [the bridge repository](https://github.com/Connecthings/cordova-bridge-connecthings#initialization). 
+Then, you need to seize the Connecthings' SDK identifiers before being able to use the plugin. You can read more about this, on [the bridge repository](https://github.com/Connecthings/herow-bridge-cordova#initialization). 
 
 ## Android build
 
